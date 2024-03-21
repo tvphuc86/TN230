@@ -1,0 +1,775 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="doantn230Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tb_AnhThietBi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strMaThietBi" Type="varchar" MaxLength="10" />
+          <Property Name="strAnh" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="tb_BaiViet">
+          <Key>
+            <PropertyRef Name="strMaBaiViet" />
+          </Key>
+          <Property Name="strMaBaiViet" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="strMaThietBi" Type="varchar" MaxLength="10" />
+          <Property Name="strTieuDe" Type="nvarchar" MaxLength="250" />
+          <Property Name="strNoiDung" Type="nvarchar" MaxLength="1000" />
+          <Property Name="dateTaoLuc" Type="date" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'doantn230.dbo.tb_ChiTietHD' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="tb_ChiTietHD">
+          <Key>
+            <PropertyRef Name="strMaThietBi" />
+          </Key>
+          <Property Name="strMaThietBi" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="strMaDon" Type="varchar" MaxLength="10" />
+          <Property Name="intSoLuong" Type="int" />
+        </EntityType>
+        <EntityType Name="tb_ChiTietKM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="strMaDotKM" Type="varchar" MaxLength="10" />
+          <Property Name="strMaThietBi" Type="varchar" MaxLength="10" />
+          <Property Name="floatTiLeGiam" Type="float" />
+        </EntityType>
+        <EntityType Name="tb_DonDatHang">
+          <Key>
+            <PropertyRef Name="strMaDon" />
+          </Key>
+          <Property Name="strMaDon" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="strMaKhachHang" Type="varchar" MaxLength="10" />
+          <Property Name="strDiaChiNhan" Type="nvarchar" MaxLength="250" />
+          <Property Name="intTrangThai" Type="int" />
+          <Property Name="dateTaoLuc" Type="date" />
+          <Property Name="floatTongTien" Type="float" />
+        </EntityType>
+        <EntityType Name="tb_HoSoCaNhan">
+          <Key>
+            <PropertyRef Name="strID" />
+          </Key>
+          <Property Name="strTen" Type="nvarchar" MaxLength="50" />
+          <Property Name="strDiaChi" Type="nvarchar" MaxLength="250" />
+          <Property Name="dateNgaySinh" Type="date" />
+          <Property Name="strID" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'doantn230.dbo.tb_KhachHangTT' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tb_KhachHangTT">
+          <Property Name="strID" Type="varchar" MaxLength="10" />
+          <Property Name="floatTiLeGiam" Type="float" />
+        </EntityType>-->
+        <EntityType Name="tb_KhuyenMai">
+          <Key>
+            <PropertyRef Name="strMaDotKM" />
+          </Key>
+          <Property Name="strMaDotKM" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="dateBatDau" Type="date" />
+          <Property Name="dateKetThuc" Type="date" />
+          <Property Name="ten" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_NSX">
+          <Key>
+            <PropertyRef Name="str_Ma" />
+          </Key>
+          <Property Name="str_Ma" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="strTen" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tb_TaiKhoan">
+          <Key>
+            <PropertyRef Name="strID" />
+          </Key>
+          <Property Name="strID" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="strPassword" Type="nchar" MaxLength="25" />
+          <Property Name="boolQuyenSD" Type="bit" />
+        </EntityType>
+        <EntityType Name="tb_ThietBi">
+          <Key>
+            <PropertyRef Name="strMaThietBi" />
+          </Key>
+          <Property Name="strMaThietBi" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="strTenThietBi" Type="nvarchar" MaxLength="50" />
+          <Property Name="strMaNSX" Type="varchar" MaxLength="10" />
+          <Property Name="intSoLuongTon" Type="int" />
+          <Property Name="strMaLoai" Type="varchar" MaxLength="10" />
+          <Property Name="intDienApBD" Type="int" />
+          <Property Name="intCongSuatBD" Type="int" />
+          <Property Name="intDienApKT" Type="int" />
+          <Property Name="intCongSuatKT" Type="int" />
+          <Property Name="floatGia" Type="float" />
+        </EntityType>
+        <EntityType Name="tbLoaiThietBi">
+          <Key>
+            <PropertyRef Name="strMaLoai" />
+          </Key>
+          <Property Name="strMaLoai" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="strTen" Type="nvarchar" MaxLength="250" />
+          <Property Name="strGioiThieu" Type="nvarchar" MaxLength="1000" />
+        </EntityType>
+        <Association Name="FK_tb_AnhThietBi_tb_ThietBi1">
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="0..1" />
+          <End Role="tb_AnhThietBi" Type="Self.tb_AnhThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Principal>
+            <Dependent Role="tb_AnhThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_BaiViet_tb_ThietBi">
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="0..1" />
+          <End Role="tb_BaiViet" Type="Self.tb_BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Principal>
+            <Dependent Role="tb_BaiViet">
+              <PropertyRef Name="strMaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ChiTietHD_tb_DonDatHang">
+          <End Role="tb_DonDatHang" Type="Self.tb_DonDatHang" Multiplicity="0..1" />
+          <End Role="tb_ChiTietHD" Type="Self.tb_ChiTietHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DonDatHang">
+              <PropertyRef Name="strMaDon" />
+            </Principal>
+            <Dependent Role="tb_ChiTietHD">
+              <PropertyRef Name="strMaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ChiTietHD_tb_ThietBi">
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="1" />
+          <End Role="tb_ChiTietHD" Type="Self.tb_ChiTietHD" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Principal>
+            <Dependent Role="tb_ChiTietHD">
+              <PropertyRef Name="strMaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ChiTietKM_tb_KhuyenMai">
+          <End Role="tb_KhuyenMai" Type="Self.tb_KhuyenMai" Multiplicity="0..1" />
+          <End Role="tb_ChiTietKM" Type="Self.tb_ChiTietKM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_KhuyenMai">
+              <PropertyRef Name="strMaDotKM" />
+            </Principal>
+            <Dependent Role="tb_ChiTietKM">
+              <PropertyRef Name="strMaDotKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ChiTietKM_tb_ThietBi">
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="0..1" />
+          <End Role="tb_ChiTietKM" Type="Self.tb_ChiTietKM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Principal>
+            <Dependent Role="tb_ChiTietKM">
+              <PropertyRef Name="strMaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DonDatHang_tb_TaiKhoan">
+          <End Role="tb_TaiKhoan" Type="Self.tb_TaiKhoan" Multiplicity="0..1" />
+          <End Role="tb_DonDatHang" Type="Self.tb_DonDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TaiKhoan">
+              <PropertyRef Name="strID" />
+            </Principal>
+            <Dependent Role="tb_DonDatHang">
+              <PropertyRef Name="strMaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <!--Errors Found During Generation:
+error 6004: The table 'doantn230.dbo.tb_KhachHangTT' is referenced by a relationship, but cannot be found.
+        <Association Name="FK_tb_KhachHangTT_tb_TaiKhoan" />-->
+        <Association Name="FK_tb_TaiKhoan_tb_HoSoCaNhan">
+          <End Role="tb_HoSoCaNhan" Type="Self.tb_HoSoCaNhan" Multiplicity="1" />
+          <End Role="tb_TaiKhoan" Type="Self.tb_TaiKhoan" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_HoSoCaNhan">
+              <PropertyRef Name="strID" />
+            </Principal>
+            <Dependent Role="tb_TaiKhoan">
+              <PropertyRef Name="strID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ThietBi_tb_NSX">
+          <End Role="tb_NSX" Type="Self.tb_NSX" Multiplicity="0..1" />
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_NSX">
+              <PropertyRef Name="str_Ma" />
+            </Principal>
+            <Dependent Role="tb_ThietBi">
+              <PropertyRef Name="strMaNSX" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ThietBi_tbLoaiThietBi">
+          <End Role="tbLoaiThietBi" Type="Self.tbLoaiThietBi" Multiplicity="0..1" />
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbLoaiThietBi">
+              <PropertyRef Name="strMaLoai" />
+            </Principal>
+            <Dependent Role="tb_ThietBi">
+              <PropertyRef Name="strMaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="doantn230ModelStoreContainer">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_AnhThietBi" EntityType="Self.tb_AnhThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_BaiViet" EntityType="Self.tb_BaiViet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_ChiTietKM" EntityType="Self.tb_ChiTietKM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_DonDatHang" EntityType="Self.tb_DonDatHang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_HoSoCaNhan" EntityType="Self.tb_HoSoCaNhan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_KhuyenMai" EntityType="Self.tb_KhuyenMai" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_NSX" EntityType="Self.tb_NSX" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_TaiKhoan" EntityType="Self.tb_TaiKhoan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_ThietBi" EntityType="Self.tb_ThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbLoaiThietBi" EntityType="Self.tbLoaiThietBi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tb_ChiTietHD" EntityType="Self.tb_ChiTietHD" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [tb_ChiTietHD].[strMaThietBi] AS [strMaThietBi], 
+    [tb_ChiTietHD].[strMaDon] AS [strMaDon], 
+    [tb_ChiTietHD].[intSoLuong] AS [intSoLuong]
+    FROM [dbo].[tb_ChiTietHD] AS [tb_ChiTietHD]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_tb_AnhThietBi_tb_ThietBi1" Association="Self.FK_tb_AnhThietBi_tb_ThietBi1">
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+            <End Role="tb_AnhThietBi" EntitySet="tb_AnhThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BaiViet_tb_ThietBi" Association="Self.FK_tb_BaiViet_tb_ThietBi">
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+            <End Role="tb_BaiViet" EntitySet="tb_BaiViet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ChiTietHD_tb_DonDatHang" Association="Self.FK_tb_ChiTietHD_tb_DonDatHang">
+            <End Role="tb_DonDatHang" EntitySet="tb_DonDatHang" />
+            <End Role="tb_ChiTietHD" EntitySet="tb_ChiTietHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ChiTietHD_tb_ThietBi" Association="Self.FK_tb_ChiTietHD_tb_ThietBi">
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+            <End Role="tb_ChiTietHD" EntitySet="tb_ChiTietHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ChiTietKM_tb_KhuyenMai" Association="Self.FK_tb_ChiTietKM_tb_KhuyenMai">
+            <End Role="tb_KhuyenMai" EntitySet="tb_KhuyenMai" />
+            <End Role="tb_ChiTietKM" EntitySet="tb_ChiTietKM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ChiTietKM_tb_ThietBi" Association="Self.FK_tb_ChiTietKM_tb_ThietBi">
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+            <End Role="tb_ChiTietKM" EntitySet="tb_ChiTietKM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DonDatHang_tb_TaiKhoan" Association="Self.FK_tb_DonDatHang_tb_TaiKhoan">
+            <End Role="tb_TaiKhoan" EntitySet="tb_TaiKhoan" />
+            <End Role="tb_DonDatHang" EntitySet="tb_DonDatHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_TaiKhoan_tb_HoSoCaNhan" Association="Self.FK_tb_TaiKhoan_tb_HoSoCaNhan">
+            <End Role="tb_HoSoCaNhan" EntitySet="tb_HoSoCaNhan" />
+            <End Role="tb_TaiKhoan" EntitySet="tb_TaiKhoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ThietBi_tb_NSX" Association="Self.FK_tb_ThietBi_tb_NSX">
+            <End Role="tb_NSX" EntitySet="tb_NSX" />
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ThietBi_tbLoaiThietBi" Association="Self.FK_tb_ThietBi_tbLoaiThietBi">
+            <End Role="tbLoaiThietBi" EntitySet="tbLoaiThietBi" />
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="doantn230Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tb_AnhThietBi">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strMaThietBi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="strAnh" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_ThietBi" Relationship="Self.FK_tb_AnhThietBi_tb_ThietBi1" FromRole="tb_AnhThietBi" ToRole="tb_ThietBi" />
+        </EntityType>
+        <EntityType Name="tb_BaiViet">
+          <Key>
+            <PropertyRef Name="strMaBaiViet" />
+          </Key>
+          <Property Name="strMaBaiViet" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strMaThietBi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="strTieuDe" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="strNoiDung" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="dateTaoLuc" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="tb_ThietBi" Relationship="Self.FK_tb_BaiViet_tb_ThietBi" FromRole="tb_BaiViet" ToRole="tb_ThietBi" />
+        </EntityType>
+        <EntityType Name="tb_ChiTietKM">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="strMaDotKM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="strMaThietBi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="floatTiLeGiam" Type="Double" />
+          <NavigationProperty Name="tb_KhuyenMai" Relationship="Self.FK_tb_ChiTietKM_tb_KhuyenMai" FromRole="tb_ChiTietKM" ToRole="tb_KhuyenMai" />
+          <NavigationProperty Name="tb_ThietBi" Relationship="Self.FK_tb_ChiTietKM_tb_ThietBi" FromRole="tb_ChiTietKM" ToRole="tb_ThietBi" />
+        </EntityType>
+        <EntityType Name="tb_DonDatHang">
+          <Key>
+            <PropertyRef Name="strMaDon" />
+          </Key>
+          <Property Name="strMaDon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strMaKhachHang" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="strDiaChiNhan" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="intTrangThai" Type="Int32" />
+          <Property Name="dateTaoLuc" Type="DateTime" Precision="0" />
+          <Property Name="floatTongTien" Type="Double" />
+          <NavigationProperty Name="tb_ChiTietHD" Relationship="Self.FK_tb_ChiTietHD_tb_DonDatHang" FromRole="tb_DonDatHang" ToRole="tb_ChiTietHD" />
+          <NavigationProperty Name="tb_TaiKhoan" Relationship="Self.FK_tb_DonDatHang_tb_TaiKhoan" FromRole="tb_DonDatHang" ToRole="tb_TaiKhoan" />
+        </EntityType>
+        <EntityType Name="tb_HoSoCaNhan">
+          <Key>
+            <PropertyRef Name="strID" />
+          </Key>
+          <Property Name="strTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="strDiaChi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="dateNgaySinh" Type="DateTime" Precision="0" />
+          <Property Name="strID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tb_TaiKhoan" Relationship="Self.FK_tb_TaiKhoan_tb_HoSoCaNhan" FromRole="tb_HoSoCaNhan" ToRole="tb_TaiKhoan" />
+        </EntityType>
+        <EntityType Name="tb_KhuyenMai">
+          <Key>
+            <PropertyRef Name="strMaDotKM" />
+          </Key>
+          <Property Name="strMaDotKM" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="dateBatDau" Type="DateTime" Precision="0" />
+          <Property Name="dateKetThuc" Type="DateTime" Precision="0" />
+          <Property Name="ten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_ChiTietKM" Relationship="Self.FK_tb_ChiTietKM_tb_KhuyenMai" FromRole="tb_KhuyenMai" ToRole="tb_ChiTietKM" />
+        </EntityType>
+        <EntityType Name="tb_NSX">
+          <Key>
+            <PropertyRef Name="str_Ma" />
+          </Key>
+          <Property Name="str_Ma" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_ThietBi" Relationship="Self.FK_tb_ThietBi_tb_NSX" FromRole="tb_NSX" ToRole="tb_ThietBi" />
+        </EntityType>
+        <EntityType Name="tb_TaiKhoan">
+          <Key>
+            <PropertyRef Name="strID" />
+          </Key>
+          <Property Name="strID" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strPassword" Type="String" MaxLength="25" FixedLength="true" Unicode="true" />
+          <Property Name="boolQuyenSD" Type="Boolean" />
+          <NavigationProperty Name="tb_DonDatHang" Relationship="Self.FK_tb_DonDatHang_tb_TaiKhoan" FromRole="tb_TaiKhoan" ToRole="tb_DonDatHang" />
+          <NavigationProperty Name="tb_HoSoCaNhan" Relationship="Self.FK_tb_TaiKhoan_tb_HoSoCaNhan" FromRole="tb_TaiKhoan" ToRole="tb_HoSoCaNhan" />
+        </EntityType>
+        <EntityType Name="tb_ThietBi">
+          <Key>
+            <PropertyRef Name="strMaThietBi" />
+          </Key>
+          <Property Name="strMaThietBi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strTenThietBi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="strMaNSX" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="intSoLuongTon" Type="Int32" />
+          <Property Name="strMaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="intDienApBD" Type="Int32" />
+          <Property Name="intCongSuatBD" Type="Int32" />
+          <Property Name="intDienApKT" Type="Int32" />
+          <Property Name="intCongSuatKT" Type="Int32" />
+          <Property Name="floatGia" Type="Double" />
+          <NavigationProperty Name="tb_AnhThietBi" Relationship="Self.FK_tb_AnhThietBi_tb_ThietBi1" FromRole="tb_ThietBi" ToRole="tb_AnhThietBi" />
+          <NavigationProperty Name="tb_BaiViet" Relationship="Self.FK_tb_BaiViet_tb_ThietBi" FromRole="tb_ThietBi" ToRole="tb_BaiViet" />
+          <NavigationProperty Name="tb_ChiTietKM" Relationship="Self.FK_tb_ChiTietKM_tb_ThietBi" FromRole="tb_ThietBi" ToRole="tb_ChiTietKM" />
+          <NavigationProperty Name="tb_NSX" Relationship="Self.FK_tb_ThietBi_tb_NSX" FromRole="tb_ThietBi" ToRole="tb_NSX" />
+          <NavigationProperty Name="tb_ChiTietHD" Relationship="Self.FK_tb_ChiTietHD_tb_ThietBi" FromRole="tb_ThietBi" ToRole="tb_ChiTietHD" />
+          <NavigationProperty Name="tbLoaiThietBi" Relationship="Self.FK_tb_ThietBi_tbLoaiThietBi" FromRole="tb_ThietBi" ToRole="tbLoaiThietBi" />
+        </EntityType>
+        <EntityType Name="tbLoaiThietBi">
+          <Key>
+            <PropertyRef Name="strMaLoai" />
+          </Key>
+          <Property Name="strMaLoai" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strTen" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="strGioiThieu" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tb_ThietBi" Relationship="Self.FK_tb_ThietBi_tbLoaiThietBi" FromRole="tbLoaiThietBi" ToRole="tb_ThietBi" />
+        </EntityType>
+        <EntityType Name="tb_ChiTietHD">
+          <Key>
+            <PropertyRef Name="strMaThietBi" />
+          </Key>
+          <Property Name="strMaThietBi" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="strMaDon" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="intSoLuong" Type="Int32" />
+          <NavigationProperty Name="tb_DonDatHang" Relationship="Self.FK_tb_ChiTietHD_tb_DonDatHang" FromRole="tb_ChiTietHD" ToRole="tb_DonDatHang" />
+          <NavigationProperty Name="tb_ThietBi" Relationship="Self.FK_tb_ChiTietHD_tb_ThietBi" FromRole="tb_ChiTietHD" ToRole="tb_ThietBi" />
+        </EntityType>
+        <Association Name="FK_tb_AnhThietBi_tb_ThietBi1">
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="0..1" />
+          <End Role="tb_AnhThietBi" Type="Self.tb_AnhThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Principal>
+            <Dependent Role="tb_AnhThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_BaiViet_tb_ThietBi">
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="0..1" />
+          <End Role="tb_BaiViet" Type="Self.tb_BaiViet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Principal>
+            <Dependent Role="tb_BaiViet">
+              <PropertyRef Name="strMaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ChiTietKM_tb_KhuyenMai">
+          <End Role="tb_KhuyenMai" Type="Self.tb_KhuyenMai" Multiplicity="0..1" />
+          <End Role="tb_ChiTietKM" Type="Self.tb_ChiTietKM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_KhuyenMai">
+              <PropertyRef Name="strMaDotKM" />
+            </Principal>
+            <Dependent Role="tb_ChiTietKM">
+              <PropertyRef Name="strMaDotKM" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ChiTietKM_tb_ThietBi">
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="0..1" />
+          <End Role="tb_ChiTietKM" Type="Self.tb_ChiTietKM" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Principal>
+            <Dependent Role="tb_ChiTietKM">
+              <PropertyRef Name="strMaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ChiTietHD_tb_DonDatHang">
+          <End Role="tb_DonDatHang" Type="Self.tb_DonDatHang" Multiplicity="0..1" />
+          <End Role="tb_ChiTietHD" Type="Self.tb_ChiTietHD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_DonDatHang">
+              <PropertyRef Name="strMaDon" />
+            </Principal>
+            <Dependent Role="tb_ChiTietHD">
+              <PropertyRef Name="strMaDon" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_DonDatHang_tb_TaiKhoan">
+          <End Role="tb_TaiKhoan" Type="Self.tb_TaiKhoan" Multiplicity="0..1" />
+          <End Role="tb_DonDatHang" Type="Self.tb_DonDatHang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_TaiKhoan">
+              <PropertyRef Name="strID" />
+            </Principal>
+            <Dependent Role="tb_DonDatHang">
+              <PropertyRef Name="strMaKhachHang" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_TaiKhoan_tb_HoSoCaNhan">
+          <End Role="tb_HoSoCaNhan" Type="Self.tb_HoSoCaNhan" Multiplicity="1" />
+          <End Role="tb_TaiKhoan" Type="Self.tb_TaiKhoan" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_HoSoCaNhan">
+              <PropertyRef Name="strID" />
+            </Principal>
+            <Dependent Role="tb_TaiKhoan">
+              <PropertyRef Name="strID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ThietBi_tb_NSX">
+          <End Role="tb_NSX" Type="Self.tb_NSX" Multiplicity="0..1" />
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tb_NSX">
+              <PropertyRef Name="str_Ma" />
+            </Principal>
+            <Dependent Role="tb_ThietBi">
+              <PropertyRef Name="strMaNSX" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ChiTietHD_tb_ThietBi">
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="1" />
+          <End Role="tb_ChiTietHD" Type="Self.tb_ChiTietHD" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="tb_ThietBi">
+              <PropertyRef Name="strMaThietBi" />
+            </Principal>
+            <Dependent Role="tb_ChiTietHD">
+              <PropertyRef Name="strMaThietBi" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tb_ThietBi_tbLoaiThietBi">
+          <End Role="tbLoaiThietBi" Type="Self.tbLoaiThietBi" Multiplicity="0..1" />
+          <End Role="tb_ThietBi" Type="Self.tb_ThietBi" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbLoaiThietBi">
+              <PropertyRef Name="strMaLoai" />
+            </Principal>
+            <Dependent Role="tb_ThietBi">
+              <PropertyRef Name="strMaLoai" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="doantn230Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tb_AnhThietBi" EntityType="Self.tb_AnhThietBi" />
+          <EntitySet Name="tb_BaiViet" EntityType="Self.tb_BaiViet" />
+          <EntitySet Name="tb_ChiTietKM" EntityType="Self.tb_ChiTietKM" />
+          <EntitySet Name="tb_DonDatHang" EntityType="Self.tb_DonDatHang" />
+          <EntitySet Name="tb_HoSoCaNhan" EntityType="Self.tb_HoSoCaNhan" />
+          <EntitySet Name="tb_KhuyenMai" EntityType="Self.tb_KhuyenMai" />
+          <EntitySet Name="tb_NSX" EntityType="Self.tb_NSX" />
+          <EntitySet Name="tb_TaiKhoan" EntityType="Self.tb_TaiKhoan" />
+          <EntitySet Name="tb_ThietBi" EntityType="Self.tb_ThietBi" />
+          <EntitySet Name="tbLoaiThietBis" EntityType="Self.tbLoaiThietBi" />
+          <EntitySet Name="tb_ChiTietHD" EntityType="Self.tb_ChiTietHD" />
+          <AssociationSet Name="FK_tb_AnhThietBi_tb_ThietBi1" Association="Self.FK_tb_AnhThietBi_tb_ThietBi1">
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+            <End Role="tb_AnhThietBi" EntitySet="tb_AnhThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_BaiViet_tb_ThietBi" Association="Self.FK_tb_BaiViet_tb_ThietBi">
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+            <End Role="tb_BaiViet" EntitySet="tb_BaiViet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ChiTietKM_tb_KhuyenMai" Association="Self.FK_tb_ChiTietKM_tb_KhuyenMai">
+            <End Role="tb_KhuyenMai" EntitySet="tb_KhuyenMai" />
+            <End Role="tb_ChiTietKM" EntitySet="tb_ChiTietKM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ChiTietKM_tb_ThietBi" Association="Self.FK_tb_ChiTietKM_tb_ThietBi">
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+            <End Role="tb_ChiTietKM" EntitySet="tb_ChiTietKM" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ChiTietHD_tb_DonDatHang" Association="Self.FK_tb_ChiTietHD_tb_DonDatHang">
+            <End Role="tb_DonDatHang" EntitySet="tb_DonDatHang" />
+            <End Role="tb_ChiTietHD" EntitySet="tb_ChiTietHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_DonDatHang_tb_TaiKhoan" Association="Self.FK_tb_DonDatHang_tb_TaiKhoan">
+            <End Role="tb_TaiKhoan" EntitySet="tb_TaiKhoan" />
+            <End Role="tb_DonDatHang" EntitySet="tb_DonDatHang" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_TaiKhoan_tb_HoSoCaNhan" Association="Self.FK_tb_TaiKhoan_tb_HoSoCaNhan">
+            <End Role="tb_HoSoCaNhan" EntitySet="tb_HoSoCaNhan" />
+            <End Role="tb_TaiKhoan" EntitySet="tb_TaiKhoan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ThietBi_tb_NSX" Association="Self.FK_tb_ThietBi_tb_NSX">
+            <End Role="tb_NSX" EntitySet="tb_NSX" />
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ChiTietHD_tb_ThietBi" Association="Self.FK_tb_ChiTietHD_tb_ThietBi">
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+            <End Role="tb_ChiTietHD" EntitySet="tb_ChiTietHD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tb_ThietBi_tbLoaiThietBi" Association="Self.FK_tb_ThietBi_tbLoaiThietBi">
+            <End Role="tbLoaiThietBi" EntitySet="tbLoaiThietBis" />
+            <End Role="tb_ThietBi" EntitySet="tb_ThietBi" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="doantn230ModelStoreContainer" CdmEntityContainer="doantn230Entities">
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="doantn230Model.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_AnhThietBi">
+            <EntityTypeMapping TypeName="doantn230Model.tb_AnhThietBi">
+              <MappingFragment StoreEntitySet="tb_AnhThietBi">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="strMaThietBi" ColumnName="strMaThietBi" />
+                <ScalarProperty Name="strAnh" ColumnName="strAnh" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_BaiViet">
+            <EntityTypeMapping TypeName="doantn230Model.tb_BaiViet">
+              <MappingFragment StoreEntitySet="tb_BaiViet">
+                <ScalarProperty Name="strMaBaiViet" ColumnName="strMaBaiViet" />
+                <ScalarProperty Name="strMaThietBi" ColumnName="strMaThietBi" />
+                <ScalarProperty Name="strTieuDe" ColumnName="strTieuDe" />
+                <ScalarProperty Name="strNoiDung" ColumnName="strNoiDung" />
+                <ScalarProperty Name="dateTaoLuc" ColumnName="dateTaoLuc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_ChiTietKM">
+            <EntityTypeMapping TypeName="doantn230Model.tb_ChiTietKM">
+              <MappingFragment StoreEntitySet="tb_ChiTietKM">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="strMaDotKM" ColumnName="strMaDotKM" />
+                <ScalarProperty Name="strMaThietBi" ColumnName="strMaThietBi" />
+                <ScalarProperty Name="floatTiLeGiam" ColumnName="floatTiLeGiam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_DonDatHang">
+            <EntityTypeMapping TypeName="doantn230Model.tb_DonDatHang">
+              <MappingFragment StoreEntitySet="tb_DonDatHang">
+                <ScalarProperty Name="strMaDon" ColumnName="strMaDon" />
+                <ScalarProperty Name="strMaKhachHang" ColumnName="strMaKhachHang" />
+                <ScalarProperty Name="strDiaChiNhan" ColumnName="strDiaChiNhan" />
+                <ScalarProperty Name="intTrangThai" ColumnName="intTrangThai" />
+                <ScalarProperty Name="dateTaoLuc" ColumnName="dateTaoLuc" />
+                <ScalarProperty Name="floatTongTien" ColumnName="floatTongTien" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_HoSoCaNhan">
+            <EntityTypeMapping TypeName="doantn230Model.tb_HoSoCaNhan">
+              <MappingFragment StoreEntitySet="tb_HoSoCaNhan">
+                <ScalarProperty Name="strTen" ColumnName="strTen" />
+                <ScalarProperty Name="strDiaChi" ColumnName="strDiaChi" />
+                <ScalarProperty Name="dateNgaySinh" ColumnName="dateNgaySinh" />
+                <ScalarProperty Name="strID" ColumnName="strID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_KhuyenMai">
+            <EntityTypeMapping TypeName="doantn230Model.tb_KhuyenMai">
+              <MappingFragment StoreEntitySet="tb_KhuyenMai">
+                <ScalarProperty Name="strMaDotKM" ColumnName="strMaDotKM" />
+                <ScalarProperty Name="dateBatDau" ColumnName="dateBatDau" />
+                <ScalarProperty Name="dateKetThuc" ColumnName="dateKetThuc" />
+                <ScalarProperty Name="ten" ColumnName="ten" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_NSX">
+            <EntityTypeMapping TypeName="doantn230Model.tb_NSX">
+              <MappingFragment StoreEntitySet="tb_NSX">
+                <ScalarProperty Name="str_Ma" ColumnName="str_Ma" />
+                <ScalarProperty Name="strTen" ColumnName="strTen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_TaiKhoan">
+            <EntityTypeMapping TypeName="doantn230Model.tb_TaiKhoan">
+              <MappingFragment StoreEntitySet="tb_TaiKhoan">
+                <ScalarProperty Name="strID" ColumnName="strID" />
+                <ScalarProperty Name="strPassword" ColumnName="strPassword" />
+                <ScalarProperty Name="boolQuyenSD" ColumnName="boolQuyenSD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_ThietBi">
+            <EntityTypeMapping TypeName="doantn230Model.tb_ThietBi">
+              <MappingFragment StoreEntitySet="tb_ThietBi">
+                <ScalarProperty Name="strMaThietBi" ColumnName="strMaThietBi" />
+                <ScalarProperty Name="strTenThietBi" ColumnName="strTenThietBi" />
+                <ScalarProperty Name="strMaNSX" ColumnName="strMaNSX" />
+                <ScalarProperty Name="intSoLuongTon" ColumnName="intSoLuongTon" />
+                <ScalarProperty Name="strMaLoai" ColumnName="strMaLoai" />
+                <ScalarProperty Name="intDienApBD" ColumnName="intDienApBD" />
+                <ScalarProperty Name="intCongSuatBD" ColumnName="intCongSuatBD" />
+                <ScalarProperty Name="intDienApKT" ColumnName="intDienApKT" />
+                <ScalarProperty Name="intCongSuatKT" ColumnName="intCongSuatKT" />
+                <ScalarProperty Name="floatGia" ColumnName="floatGia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbLoaiThietBis">
+            <EntityTypeMapping TypeName="doantn230Model.tbLoaiThietBi">
+              <MappingFragment StoreEntitySet="tbLoaiThietBi">
+                <ScalarProperty Name="strMaLoai" ColumnName="strMaLoai" />
+                <ScalarProperty Name="strTen" ColumnName="strTen" />
+                <ScalarProperty Name="strGioiThieu" ColumnName="strGioiThieu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tb_ChiTietHD">
+            <EntityTypeMapping TypeName="doantn230Model.tb_ChiTietHD">
+              <MappingFragment StoreEntitySet="tb_ChiTietHD">
+                <ScalarProperty Name="strMaThietBi" ColumnName="strMaThietBi" />
+                <ScalarProperty Name="strMaDon" ColumnName="strMaDon" />
+                <ScalarProperty Name="intSoLuong" ColumnName="intSoLuong" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

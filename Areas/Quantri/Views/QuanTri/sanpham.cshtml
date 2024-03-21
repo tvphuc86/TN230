@@ -1,0 +1,317 @@
+﻿@model PagedList.IPagedList<thietbiphatsang.tb_ThietBi>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Areas/Quantri/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-wrapper">
+
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+                        <h2 class="ml-lg-2">Quản lý sản phẩm</h2>
+                    </div>
+                    <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
+                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+                            <i class="material-icons">&#xE147;</i>
+                            <span>Thêm sản phẩm mới</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Ảnh</th>
+                        <th>
+                            Mã sản phẩm
+                        </th>
+                        <th>Tên</th>
+                        <th>Loại</th>
+                        <th>Nhà sản xuất</th>
+                        <th>Số lượng tồn</th>
+                        <th>Điện áp</th>
+                        <th>Công suất</th>
+                        <th>Giá</th>
+                        <th style="width:200px"></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th><img style="width:200px;height:200px" src="~/Areas/Quantri/Content/img/sanpham/@item.tb_AnhThietBi.FirstOrDefault().strAnh" /></th>
+                            <th>
+                                @item.strMaThietBi
+                            </th>
+                            <th>@item.strTenThietBi</th>
+                            <th>@item.tbLoaiThietBi.strTen</th>
+                            <th>@item.tb_NSX.strTen</th>
+                            <th>@item.intSoLuongTon</th>
+                            <th>@item.intDienApBD - @item.intDienApKT</th>
+                            <th>@item.intCongSuatBD - @item.intCongSuatKT</th>
+                            <th>@item.floatGia</th>
+                            <th>
+                                <a onclick="editsanpham('@item.strMaThietBi', '@item.strTenThietBi', '@item.strMaNSX', '@item.strMaLoai', '@item.intSoLuongTon', '@item.floatGia')" class="edit" data-toggle="modal">
+                                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                </a>
+                                <a onclick="deletesanpham('@item.strMaThietBi', '@item.strTenThietBi')" class="delete" data-toggle="modal">
+                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                </a>
+                                <a onclick="thembaiviet('@item.strMaThietBi')" class="edit" data-toggle="modal">
+                                    <i class="material-icons" data-toggle="tooltip" title="Delete">note_add</i>
+                                </a>
+
+                            </th>
+                        </tr>
+
+                    }
+
+                </tbody>
+
+
+            </table>
+
+
+            <div class="clearfix">
+                <div class="hint-text"> Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</div>
+                <ul class="pagination pull-right text-center text-black">
+                    @Html.PagedListPager(Model, Page => Url.Action("sanpham", new { Page }))
+                </ul>
+            </div>
+        </div>
+    </div>
+    @{
+        doantn230Entities db = new doantn230Entities();
+        var loai = db.tbLoaiThietBi.ToList();
+        var nsx = db.tb_NSX.ToList();
+    }
+    <div class="modal fade" tabindex="-1" id="addEmployeeModal1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm bài viết</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Tiêu đề</label>
+                        <input type="text" id="tieude" class="form-control" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nội dung</label>
+                        <textarea id="noidung" class="form-control" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" id="btnthembaiviet" class="btn btn-success">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var thembaiviet = function (matb) {
+            $("#addEmployeeModal1").modal('show');
+            $("#btnthembaiviet").click(function () {
+                $.ajax({
+                    url: "/quantri/quantri/thembaiviet",
+                    type: "GET",
+                    data: { matb: matb, tieude: $("#tieude").val(), noidung: $("#noidung").val() },
+                    success: function (rs) {
+                        alert(rs);
+                    }
+                })
+            })
+           
+        }
+    </script>
+    <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @using (Html.BeginForm("themsp", "quantri", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Tên sản phẩm</label>
+                            <input id="tensp" name="tensp" type="text" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Nhà sản xuất</label>
+                            <select class="form-control" id="mansx" name="nsx">
+                                <option value="0">Chọn nhà sản xuất</option>
+                                @foreach (var item in nsx)
+                                {
+                                    <option value="@item.str_Ma">@item.strTen</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Loại sản phẩm</label>
+                            <select class="form-control" id="maloai" name="loai">
+                                <option value="0">Chọn loại sản phẩm</option>
+                                @foreach (var item in loai)
+                                {
+                                    <option value="@item.strMaLoai">@item.strTen</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Ảnh</label>
+                            @Html.TextBox("file", "", new { type = "file" })
+                        </div>
+                        <div class="form-group">
+                            <label>Giá</label>
+                            <input type="number" name="gia" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Số lượng tồn</label>
+                            <input type="number" name="sl" class="form-control" required>
+                        </div>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-success">Thêm</button>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+    <!----edit-modal end--------->
+    <!----edit-modal start--------->
+    <div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sửa thông tin sản phẩm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Tên sản phẩm</label>
+                        <input id="tenspcs" name="tensp" type="text" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nhà sản xuất</label>
+                        <select class="form-control" id="mansxcs" name="nsxcs">
+                            <option value="0">Chọn nhà sản xuất</option>
+                            @foreach (var item in nsx)
+                            {
+                                <option value="@item.str_Ma">@item.strTen</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Loại sản phẩm</label>
+                        <select class="form-control" id="maloaics" name="loai">
+                            <option value="0">Chọn loại sản phẩm</option>
+                            @foreach (var item in loai)
+                            {
+                                <option value="@item.strMaLoai">@item.strTen</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Giá</label>
+                        <input type="number" name="giacs" id="giacs" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Số lượng tồn</label>
+                        <input type="number" name="slcs" id="slcs" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" id="Luuspcs" class="btn btn-success">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var editsanpham = function (masp, ten, mansx, maloai, soluong, gia) {
+            $("#tenspcs").val(ten);
+            $("#mansxcs").val(mansx);
+            $("#maloaics").val(maloai);
+            $("#slcs").val(soluong);
+            $("#giacs").val(gia);
+            $("#editEmployeeModal").modal('show');
+            $("#Luuspcs").click(function () {
+                $.ajax({
+                    url: "/quantri/quantri/suasp",
+                    type: "GET",
+                    data: {
+                        id: masp, ten: $("#tenspcs").val(), mansx: $("#mansxcs").val(), maloai: $("#maloaics").val(), soluong: $("#slcs").val(), gia: $("#giacs").val()
+
+                    },
+                    success: function (rs) {
+                        alert(rs);
+                        location.reload();
+                    }
+                })
+            })
+        }
+
+    </script>
+    <!----edit-modal end--------->
+    <!----delete-modal start--------->
+    <div class="modal fade" tabindex="-1" id="deleteEmployeeModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Xóa sản phẩm </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn chắc muốn xóa  <span id="maloaixoa" class="text-danger"></span> này?</p>
+                    <p class="text-warning"><small>xóa rồi không thể khôi phục,</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" id="btnxoaloai" class="btn btn-success">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var deletesanpham = function (ma, ten) {
+        $("#deleteEmployeeModal").modal('show');
+        $("#maloaixoa").text(ten);
+        $("#btnxoaloai").click(function () {
+            $.ajax({
+                url: "/quantri/quantri/xoasp",
+                type: "GET",
+                data: {
+                    id: ma
+                },
+                success: function (rs) {
+                    alert(rs);
+                    location.reload();
+                }
+            })
+        })
+    }
+</script>

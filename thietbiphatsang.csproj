@@ -1,0 +1,610 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A34AE202-3E98-4F71-9989-0A1190DDD8A4}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>thietbiphatsang</RootNamespace>
+    <AssemblyName>thietbiphatsang</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44348</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Quantri\Controllers\QuanTriController.cs" />
+    <Compile Include="Areas\Quantri\QuantriAreaRegistration.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\sanpham.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbLoaiThietBi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_AnhThietBi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_BaiViet.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_ChiTietHD.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_ChiTietKM.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_DonDatHang.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_HoSoCaNhan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_KhuyenMai.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_NSX.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_TaiKhoan.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tb_ThietBi.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Quantri\Content\assets\arrowleft.png" />
+    <Content Include="Areas\Quantri\Content\assets\arrowright.png" />
+    <Content Include="Areas\Quantri\Content\assets\arrow_large_left.png" />
+    <Content Include="Areas\Quantri\Content\assets\arrow_left.png" />
+    <Content Include="Areas\Quantri\Content\assets\arrow_left2.png" />
+    <Content Include="Areas\Quantri\Content\assets\arrow_right.png" />
+    <Content Include="Areas\Quantri\Content\assets\arrow_right2.png" />
+    <Content Include="Areas\Quantri\Content\assets\black50.png" />
+    <Content Include="Areas\Quantri\Content\assets\boxed_bgtile.png" />
+    <Content Include="Areas\Quantri\Content\assets\bullets.png" />
+    <Content Include="Areas\Quantri\Content\assets\bullets2.png" />
+    <Content Include="Areas\Quantri\Content\assets\bullet_boxed.png" />
+    <Content Include="Areas\Quantri\Content\assets\coloredbg.png" />
+    <Content Include="Areas\Quantri\Content\assets\grain.png" />
+    <Content Include="Areas\Quantri\Content\assets\gridtile.png" />
+    <Content Include="Areas\Quantri\Content\assets\gridtile_3x3.png" />
+    <Content Include="Areas\Quantri\Content\assets\gridtile_3x3_white.png" />
+    <Content Include="Areas\Quantri\Content\assets\gridtile_white.png" />
+    <Content Include="Areas\Quantri\Content\assets\large_left.png" />
+    <Content Include="Areas\Quantri\Content\assets\large_right.png" />
+    <Content Include="Areas\Quantri\Content\assets\left-arrow.png" />
+    <Content Include="Areas\Quantri\Content\assets\loader.gif" />
+    <Content Include="Areas\Quantri\Content\assets\loader2.gif" />
+    <Content Include="Areas\Quantri\Content\assets\navigdots.png" />
+    <Content Include="Areas\Quantri\Content\assets\navigdots_bgtile.png" />
+    <Content Include="Areas\Quantri\Content\assets\right-arrow.png" />
+    <Content Include="Areas\Quantri\Content\assets\shadow1.png" />
+    <Content Include="Areas\Quantri\Content\assets\shadow2.png" />
+    <Content Include="Areas\Quantri\Content\assets\shadow3.png" />
+    <Content Include="Areas\Quantri\Content\assets\small_left.png" />
+    <Content Include="Areas\Quantri\Content\assets\small_left_boxed.png" />
+    <Content Include="Areas\Quantri\Content\assets\small_right.png" />
+    <Content Include="Areas\Quantri\Content\assets\small_right_boxed.png" />
+    <Content Include="Areas\Quantri\Content\assets\timer.png" />
+    <Content Include="Areas\Quantri\Content\assets\timerdot.png" />
+    <Content Include="Areas\Quantri\Content\assets\transparent.jpg" />
+    <Content Include="Areas\Quantri\Content\assets\white50.png" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\.eslintrc.js" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\1-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\1-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\1-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\1-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\1-5.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\1-6.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\1-7.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\1-8.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\2-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\2-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\2-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\2-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\3-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\3-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\3-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\3-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\5-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\big\2-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\big\2-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\big\2-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\big\2-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\forkme-on-github-right.png" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\medium\2-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\medium\2-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\medium\2-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\medium\2-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\small\2-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\small\2-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\small\2-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\small\2-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\small\4-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\small\4-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\small\4-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\small\4-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\1-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\1-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\1-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\1-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\1-5.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\1-6.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\1-7.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\1-8.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\2-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\2-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\2-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\2-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\3-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\3-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\3-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\3-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\4-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\4-2.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\4-3.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\4-4.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\img\thumbs\5-1.jpg" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\index.html" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\demo\js\highlight.min.js" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\dist\baguetteBox.css" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\dist\baguetteBox.js" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\dist\baguetteBox.min.css" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\dist\baguetteBox.min.js" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\gulpfile.js" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\src\baguetteBox.js" />
+    <Content Include="Areas\Quantri\Content\css\animate.css" />
+    <Content Include="Areas\Quantri\Content\css\animate.min.css" />
+    <Content Include="Areas\Quantri\Content\css\aos\aos.css" />
+    <Content Include="Areas\Quantri\Content\css\baguetteBox.min.css" />
+    <Content Include="Areas\Quantri\Content\css\bootstrap.min.css" />
+    <Content Include="Areas\Quantri\Content\css\custom.css" />
+    <Content Include="Areas\Quantri\Content\css\jquery-ui.css" />
+    <Content Include="Areas\Quantri\Content\css\jquery-ui.min.css" />
+    <Content Include="Areas\Quantri\Content\css\jquery-ui.structure.min.css" />
+    <Content Include="Areas\Quantri\Content\css\media.css" />
+    <Content Include="Areas\Quantri\Content\css\nice-select.css" />
+    <Content Include="Areas\Quantri\Content\css\owl.carousel.css" />
+    <Content Include="Areas\Quantri\Content\css\owl.theme.css" />
+    <Content Include="Areas\Quantri\Content\css\settings.css" />
+    <Content Include="Areas\Quantri\Content\css\slick-theme.css" />
+    <Content Include="Areas\Quantri\Content\css\slick.css" />
+    <Content Include="Areas\Quantri\Content\css\splitting.css" />
+    <Content Include="Areas\Quantri\Content\css\style.css" />
+    <Content Include="Areas\Quantri\Content\css\styleesh.css" />
+    <Content Include="Areas\Quantri\Content\font\backup.txt" />
+    <Content Include="Areas\Quantri\Content\font\flaticon.css" />
+    <Content Include="Areas\Quantri\Content\font\flaticon.html" />
+    <Content Include="Areas\Quantri\Content\font\Flaticon.svg" />
+    <Content Include="Areas\Quantri\Content\font\font\flaticon.css" />
+    <Content Include="Areas\Quantri\Content\font\font\flaticon.html" />
+    <Content Include="Areas\Quantri\Content\font\font\Flaticon.svg" />
+    <Content Include="Areas\Quantri\Content\img\slider\1.jpg" />
+    <Content Include="Areas\Quantri\Content\img\slider\2.jpg" />
+    <Content Include="Areas\Quantri\Content\img\slider\3.jpg" />
+    <Content Include="Areas\Quantri\Content\img\slider\4.jpg" />
+    <Content Include="Areas\Quantri\Content\img\slider\5.jpg" />
+    <Content Include="Areas\Quantri\Content\img\slider\banner2-removebg-preview %281%29.png" />
+    <Content Include="Areas\Quantri\Content\img\slider\banner3-removebg-preview.png" />
+    <Content Include="Areas\Quantri\Content\img\logo.png" />
+    <Content Include="Areas\Quantri\Content\img\user.jpg" />
+    <Content Include="Areas\Quantri\Content\img\user.png" />
+    <Content Include="Areas\Quantri\Content\js\acmeticker.js" />
+    <Content Include="Areas\Quantri\Content\js\aos\aos.js" />
+    <Content Include="Areas\Quantri\Content\js\app.js" />
+    <Content Include="Areas\Quantri\Content\js\baguetteBox.min.js" />
+    <Content Include="Areas\Quantri\Content\js\bootstrap.min.js" />
+    <Content Include="Areas\Quantri\Content\js\daterangepicker.js" />
+    <Content Include="Areas\Quantri\Content\js\jquery-3.3.1.min.js" />
+    <Content Include="Areas\Quantri\Content\js\jquery-3.3.1.slim.min.js" />
+    <Content Include="Areas\Quantri\Content\js\jquery-ui.js" />
+    <Content Include="Areas\Quantri\Content\js\jquery-ui.min.js" />
+    <Content Include="Areas\Quantri\Content\js\jquery.counterup.min.js" />
+    <Content Include="Areas\Quantri\Content\js\jquery.js" />
+    <Content Include="Areas\Quantri\Content\js\jquery.waypoints.min.js" />
+    <Content Include="Areas\Quantri\Content\js\moment.min.js" />
+    <Content Include="Areas\Quantri\Content\js\nice-select\jquery-nice.js" />
+    <Content Include="Areas\Quantri\Content\js\nice-select\jquery.nice-select.js" />
+    <Content Include="Areas\Quantri\Content\js\owl.carousel.js" />
+    <Content Include="Areas\Quantri\Content\js\popper.min.js" />
+    <Content Include="Areas\Quantri\Content\js\rev-slider\jquery.themepunch.plugins.min.js" />
+    <Content Include="Areas\Quantri\Content\js\rev-slider\jquery.themepunch.revolution.js" />
+    <Content Include="Areas\Quantri\Content\js\rev-slider\jquery.themepunch.revolution.min.js" />
+    <Content Include="Areas\Quantri\Content\js\scroll-out.js" />
+    <Content Include="Areas\Quantri\Content\js\scroll-out.min.js" />
+    <Content Include="Areas\Quantri\Content\js\scroll2Section.js" />
+    <Content Include="Areas\Quantri\Content\js\slick.min.js" />
+    <Content Include="Areas\Quantri\Content\js\wow.min.js" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\css\style.css" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\css\style.min.css" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\js\acmeticker.js" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\js\acmeticker.min.js" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\js\jquery.js" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\js\jquery.min.js" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\examples\horizontal.html" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\examples\marquee.html" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\examples\typewriter.html" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\examples\vertical.html" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\Gruntfile.js" />
+    <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\custom.css" />
+    <Content Include="Content\assets\css\fontawesome.css" />
+    <Content Include="Content\assets\css\fontawesome.min.css" />
+    <Content Include="Content\assets\css\slick-theme.css" />
+    <Content Include="Content\assets\css\slick-theme.min.css" />
+    <Content Include="Content\assets\css\slick.min.css" />
+    <Content Include="Content\assets\css\templatemo.css" />
+    <Content Include="Content\assets\css\templatemo.min.css" />
+    <Content Include="Content\assets\img\about-hero.svg" />
+    <Content Include="Content\assets\img\ajax-loader.gif" />
+    <Content Include="Content\assets\img\apple-icon.png" />
+    <Content Include="Content\assets\img\banner_img_01.jpg" />
+    <Content Include="Content\assets\img\banner_img_02.jpg" />
+    <Content Include="Content\assets\img\banner_img_03.jpg" />
+    <Content Include="Content\assets\img\brand_01.png" />
+    <Content Include="Content\assets\img\brand_02.png" />
+    <Content Include="Content\assets\img\brand_03.png" />
+    <Content Include="Content\assets\img\brand_04.png" />
+    <Content Include="Content\assets\img\category_img_01.jpg" />
+    <Content Include="Content\assets\img\category_img_02.jpg" />
+    <Content Include="Content\assets\img\category_img_03.jpg" />
+    <Content Include="Content\assets\img\favicon.ico" />
+    <Content Include="Content\assets\img\feature_prod_01.jpg" />
+    <Content Include="Content\assets\img\feature_prod_02.jpg" />
+    <Content Include="Content\assets\img\feature_prod_03.jpg" />
+    <Content Include="Content\assets\img\product_single_01.jpg" />
+    <Content Include="Content\assets\img\product_single_02.jpg" />
+    <Content Include="Content\assets\img\product_single_03.jpg" />
+    <Content Include="Content\assets\img\product_single_04.jpg" />
+    <Content Include="Content\assets\img\product_single_05.jpg" />
+    <Content Include="Content\assets\img\product_single_06.jpg" />
+    <Content Include="Content\assets\img\product_single_07.jpg" />
+    <Content Include="Content\assets\img\product_single_08.jpg" />
+    <Content Include="Content\assets\img\product_single_09.jpg" />
+    <Content Include="Content\assets\img\product_single_10.jpg" />
+    <Content Include="Content\assets\img\shop_01.jpg" />
+    <Content Include="Content\assets\img\shop_02.jpg" />
+    <Content Include="Content\assets\img\shop_03.jpg" />
+    <Content Include="Content\assets\img\shop_04.jpg" />
+    <Content Include="Content\assets\img\shop_05.jpg" />
+    <Content Include="Content\assets\img\shop_06.jpg" />
+    <Content Include="Content\assets\img\shop_07.jpg" />
+    <Content Include="Content\assets\img\shop_08.jpg" />
+    <Content Include="Content\assets\img\shop_09.jpg" />
+    <Content Include="Content\assets\img\shop_10.jpg" />
+    <Content Include="Content\assets\img\shop_11.jpg" />
+    <Content Include="Content\assets\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\assets\js\custom.js" />
+    <Content Include="Content\assets\js\jquery-1.11.0.min.js" />
+    <Content Include="Content\assets\js\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Content\assets\js\slick.min.js" />
+    <Content Include="Content\assets\js\templatemo.js" />
+    <Content Include="Content\assets\js\templatemo.min.js" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.svg" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.svg" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\assets\webfonts\slick.svg" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Areas\Quantri\Content\assets\arrows.psd" />
+    <Content Include="Areas\Quantri\Content\assets\bullets.psd" />
+    <Content Include="Areas\Quantri\Content\assets\OneNote Table Of Contents.onetoc2" />
+    <Content Include="Areas\Quantri\Content\assets\small_arrows.psd" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\.editorconfig" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\.gitattributes" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\.gitignore" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\.npmrc" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\.travis.yml" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\bower.json" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\CODE_OF_CONDUCT.md" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\CONTRIBUTING.md" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\LICENSE" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\package-lock.json" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\package.json" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\README.md" />
+    <Content Include="Areas\Quantri\Content\baguetteBox.js-dev\src\baguetteBox.scss" />
+    <Content Include="Areas\Quantri\Content\css\OneNote Table Of Contents.onetoc2" />
+    <Content Include="Areas\Quantri\Content\font\Flaticon.woff" />
+    <Content Include="Areas\Quantri\Content\font\Flaticon.woff2" />
+    <Content Include="Areas\Quantri\Content\font\font\Flaticon.eot" />
+    <Content Include="Areas\Quantri\Content\font\font\Flaticon.ttf" />
+    <Content Include="Areas\Quantri\Content\font\font\Flaticon.woff" />
+    <Content Include="Areas\Quantri\Content\font\font\Flaticon.woff2" />
+    <Content Include="Areas\Quantri\Content\font\font\_flaticon.scss" />
+    <Content Include="Areas\Quantri\Content\font\license\license.pdf" />
+    <Content Include="Areas\Quantri\Content\font\my-icons-collection %2846%29.zip" />
+    <Content Include="Areas\Quantri\Content\font\my-icons-collection.zip" />
+    <Content Include="Areas\Quantri\Content\font\OneNote Table Of Contents.onetoc2" />
+    <Content Include="Areas\Quantri\Content\font\_flaticon.scss" />
+    <Content Include="Areas\Quantri\Content\img\OneNote Table Of Contents.onetoc2" />
+    <Content Include="Areas\Quantri\Content\img\slider\1.webp" />
+    <Content Include="Areas\Quantri\Content\img\slider\2.webp" />
+    <Content Include="Areas\Quantri\Content\img\slider\5.webp" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\.gitattributes" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\.gitignore" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\css\style.css.map" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\js\acmeticker.min.js.map" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\js\jquery.min.js.map" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\scss\base\_mixins.scss" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\scss\base\_variable.scss" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\assets\scss\main.scss" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\LICENSE" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\package-lock.json" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\package.json" />
+    <Content Include="Areas\Quantri\Content\news-ticker-controls-acme\README.md" />
+    <Content Include="Areas\Quantri\Views\web.config" />
+    <Content Include="Areas\Quantri\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Quantri\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Quantri\Views\QuanTri\Trangchu.cshtml" />
+    <Content Include="Areas\Quantri\Views\QuanTri\loaisanpham.cshtml" />
+    <Content Include="Areas\Quantri\Views\QuanTri\sanpham.cshtml" />
+    <Content Include="Areas\Quantri\Views\QuanTri\nsx.cshtml" />
+    <Content Include="Areas\Quantri\Views\QuanTri\khuyenmai.cshtml" />
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\Quantri\Views\QuanTri\spkm.cshtml" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.eot" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.ttf" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.woff" />
+    <Content Include="Content\assets\webfonts\fa-brands-400.woff2" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.eot" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.ttf" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.woff" />
+    <Content Include="Content\assets\webfonts\fa-regular-400.woff2" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.eot" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.ttf" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.woff" />
+    <Content Include="Content\assets\webfonts\fa-solid-900.woff2" />
+    <Content Include="Content\assets\webfonts\slick.eot" />
+    <Content Include="Content\assets\webfonts\slick.ttf" />
+    <Content Include="Content\assets\webfonts\slick.woff" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\login.cshtml" />
+    <Content Include="Views\Home\loctheoloai.cshtml" />
+    <Content Include="Views\Home\loctheonsx.cshtml" />
+    <Content Include="Views\Home\loctheokm.cshtml" />
+    <Content Include="Views\Home\dangky.cshtml" />
+    <Content Include="Views\Home\thongtin.cshtml" />
+    <Content Include="Views\Home\ShoppingCart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\Quantri\Content\img\sanpham\" />
+    <Folder Include="Areas\Quantri\Data\" />
+    <Folder Include="Views\Base\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49628</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44348/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

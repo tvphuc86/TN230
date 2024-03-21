@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2c8000372a1d48dca2a9f2ce621b054e" Name="Diagram1">
+        <EntityTypeShape EntityType="doantn230Model.sysdiagram" Width="1.5" PointX="8.75" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_AnhThietBi" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_BaiViet" Width="1.5" PointX="5.25" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_ChiTietKM" Width="1.5" PointX="8.25" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_DonDatHang" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_HoSoCaNhan" Width="1.5" PointX="1.5" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_KhuyenMai" Width="1.5" PointX="6" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_NSX" Width="1.5" PointX="0.75" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_TaiKhoan" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_ThietBi" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tbLoaiThietBi" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="doantn230Model.tb_ChiTietHD" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
+        <AssociationConnector Association="doantn230Model.FK_tb_AnhThietBi_tb_ThietBi1" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_BaiViet_tb_ThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_ChiTietKM_tb_KhuyenMai" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_ChiTietKM_tb_ThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_ChiTietHD_tb_DonDatHang" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_DonDatHang_tb_TaiKhoan" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_TaiKhoan_tb_HoSoCaNhan" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_ThietBi_tb_NSX" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_ChiTietHD_tb_ThietBi" ManuallyRouted="false" />
+        <AssociationConnector Association="doantn230Model.FK_tb_ThietBi_tbLoaiThietBi" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

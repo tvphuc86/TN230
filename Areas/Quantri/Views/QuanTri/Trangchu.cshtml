@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "Trangchu";
+    Layout = "~/Areas/Quantri/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header">
+                <div class="icon icon-warning">
+                    <span class="material-icons">equalizer</span>
+                </div>
+            </div>
+            <div class="card-content text-center">
+                <p class="category"><strong>Sản phẩm</strong></p>
+                <h3 class="card-title">@ViewBag.Sanpham</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons text-info">info</i>
+                    <a href="/quantri/quantri/sanpham">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header">
+                <div class="icon icon-rose">
+                    <span class="material-icons">shopping_cart</span>
+
+                </div>
+            </div>
+            <div class="card-content text-center">
+                <p class="category"><strong>Đơn hàng</strong></p>
+                <h3 class="card-title">@ViewBag.TongDon</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">local_offer</i>  <a href="/quantri/quantri/donhang">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header">
+                <div class="icon icon-success">
+                    <span class="material-icons">
+                        attach_money
+                    </span>
+
+                </div>
+            </div>
+            <div class="card-content text-center">
+                <p class="category"><strong>Doanh Thu</strong></p>
+                <h3 class="card-title">@ViewBag.DoanhThu</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">date_range</i>  <a href="/quantri/quantri/daonhthu">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header">
+                <div class="icon icon-info">
+
+                    <span class="material-icons">
+                        follow_the_signs
+                    </span>
+                </div>
+            </div>
+            <div class="card-content text-center">
+                <p class="category"><strong>Khách hàng</strong></p>
+                <h3 class="card-title">@ViewBag.KhachHang</h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">update</i>  <a href="/quantri/quantri/khachhang">Xem chi tiết</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br/>
+@{ 
+    doantn230Entities db = new doantn230Entities();
+    var khtt = db.tb_TaiKhoan.Where(m => m.tb_DonDatHang.Where(n=>n.intTrangThai==4).Count() >= 10).Select(x => x.tb_HoSoCaNhan).ToList();
+    var km = db.tb_KhuyenMai.ToList().OrderByDescending(m => m.dateBatDau);
+}
+<div class="row ">
+    <div class="col-lg-7 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Khách hàng thân thiết</h4>
+                
+            </div>
+            <div class="card-content table-responsive">
+                <table class="table table-hover">
+                    <thead class="text-primary">
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên</th>
+                            <th>Địa chỉ</th>
+                            <th>Tổng đơn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in khtt)
+                        {
+                            <tr>
+                                <td>@item.strID</td>
+                                <td>@item.strTen</td>
+                                <td>@item.strDiaChi</td>
+                                <td>@item.tb_TaiKhoan.tb_DonDatHang.Where(m=>m.intTrangThai==4).Count()</td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-5 col-md-12">
+        <div class="card" style="min-height: 485px">
+            <div class="card-header card-header-text">
+                <h4 class="card-title">Khuyến mãi gần đây</h4>
+            </div>
+            <div class="card-content text-center">
+                <div class="streamline">
+                    @foreach (var item in km)
+                    {
+                        <div class="sl-item sl-primary">
+                            <div class="sl-content">
+                                <p>@item.ten</p>
+                            </div>
+                        </div>
+                    }
+
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

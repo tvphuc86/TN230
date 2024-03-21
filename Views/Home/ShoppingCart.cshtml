@@ -1,0 +1,88 @@
+﻿@using thietbiphatsang.Models
+@{
+    ViewBag.Title = "ShoppingCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Giỏi hàng</h2>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>
+                    Tên thiết bị
+                </th>
+                <th>
+                    Loại thiết bị
+                </th>
+                <th>
+                    Giá
+                </th>
+
+                <th>
+                    Hình ảnh
+                </th>
+                <th>
+                    Số lượng
+                </th>
+                <th>
+                    Tổng
+                </th>
+            </tr>
+        </thead>
+        @{
+            double total = 0;
+            List<CartItem> listCart = (List<CartItem>)Session["ShoppingCart"];
+        }
+        <tbody>
+            @if (listCart != null)
+            {
+                foreach (var item in (List<CartItem>)Session["ShoppingCart"])
+                {
+                    <tr>
+                        <td>
+                            @item.productOrder.strTenThietBi
+                        </td>
+                        <td>
+                            @item.productOrder.tbLoaiThietBi.strTen
+                        </td>
+                        <td>
+                            @item.productOrder.floatGia
+                        </td>
+
+                        <td>
+                            <img src="@Url.Content("~/Areas/Quantri/Content/img/sanpham/" + item.productOrder.tb_AnhThietBi.FirstOrDefault().strAnh)" alt="cover page" width="80" />
+                        </td>
+
+                        <td>
+                            <input type="text" value="@item.Quality" id="Quality" class="text-center" /> &nbsp;
+                            <input type="submit" value="Update" class="btn btn-warning" id="Update" />
+                        </td>
+                        <td>
+                            @{ double value = (double)item.productOrder.floatGia * item.Quality;
+                                total += value;
+                            }
+                            @value
+                        </td>
+
+                    </tr>
+
+                }
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="7" class="text-right">
+                    <strong>Tổng: @total</strong>
+                </td>
+            </tr>
+        </tfoot>
+    </table>
+    <p class="pull-right">
+        <input type="submit" onclick="window.open('/Home','_self')"  class="btn btn-info" value="Tiếp tục mua" /> &nbsp;
+        <input type="submit" class="btn btn-danger" value="Mua" />
+    </p>
+</div>
+
+

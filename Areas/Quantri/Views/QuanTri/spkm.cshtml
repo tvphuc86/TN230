@@ -1,0 +1,283 @@
+﻿@model PagedList.IPagedList<thietbiphatsang.tb_ChiTietKM>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Sản phẩm";
+    Layout = "~/Areas/Quantri/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row" id="content1">
+    <div class="col-md-12">
+        <div class="table-wrapper">
+
+            <div class="table-title">
+                <div class="row">
+                    <div class="col-sm-6 p-0 flex justify-content-lg-start justify-content-center">
+                        <h2 class="ml-lg-2">Quản lý sản phẩm khuyến mãi</h2>
+                    </div>
+                    <div class="col-sm-6 p-0 flex justify-content-lg-end justify-content-center">
+                        <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal">
+                            <i class="material-icons">&#xE147;</i>
+                            <span>Thêm mới</span>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>
+                            Đợt khuyến mãi
+                        </th>
+                        <th>Sản phẩm</th>
+                        <th>Tỉ lệ giảm</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <th style="width:400px">
+                                @item.tb_KhuyenMai.ten
+                            </th>
+                            <th>@item.tb_ThietBi.strTenThietBi</th>
+                            <th>@item.floatTiLeGiam %</th>
+
+                            <th>
+                                <a class="edit" data-toggle="modal" onclick="(editloai('@item.strMaDotKM', '@item.strMaThietBi', '@item.floatTiLeGiam'))">
+                                    <i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                </a>
+
+                                <a onclick="deleteloai('@item.strMaDotKM', '@item.strMaThietBi')" class="delete" data-toggle="modal">
+                                    <i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                </a>
+                            </th>
+                        </tr>
+
+                    }
+
+                </tbody>
+
+
+            </table>
+
+
+            <div class="clearfix">
+                <div class="hint-text"> Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount</div>
+                <ul class="pagination pull-right text-center text-black">
+                    @Html.PagedListPager(Model, Page => Url.Action("spkm", new { Page }))
+                </ul>
+            </div>
+        </div>
+    </div>
+    @{
+        doantn230Entities db = new doantn230Entities();
+        var loai = db.tbLoaiThietBi.ToList();
+        var nsx = db.tb_NSX.ToList();
+        var km = db.tb_KhuyenMai.ToList();
+    }
+    <div class="modal fade" tabindex="-1" id="addEmployeeModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Thêm</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-group">
+                        <label>Đợt khuyến mãi</label>
+                        <select id="madotkm" class="form-control" required>
+                            <option value="0">Chọn đợt khuyến mãi</option>
+                            @foreach (var item in km)
+                            {
+                                <option value="@item.strMaDotKM">@item.ten</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nhà sản xuất</label>
+                        <select class="form-control" id="mansx" name="nsx" required>
+                            <option value="0">Chọn nhà sản xuất</option>
+                            @foreach (var item in nsx)
+                            {
+                                <option value="@item.str_Ma">@item.strTen</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Loại sản phẩm</label>
+                        <select class="form-control" id="maloai" name="loai" required>
+                            <option value="0">Chọn loại sản phẩm</option>
+                            @foreach (var item in loai)
+                            {
+                                <option value="@item.strMaLoai">@item.strTen</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Sản phẩm</label>
+                        <div id="chksanpham"></div>
+                    </div>
+                    <div class="form-group">
+                        <label>Tỉ lệ giảm</label>
+                        <input type="number" class="form-control" id="tilegiam" required/>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" id="themspkm" class="btn btn-success">Thêm</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $("#mansx , #maloai").change(function () {
+            $.ajax({
+                url: "/quantri/quantri/loc",
+                type: "GET",
+                data: { nsx: $("#mansx").val(), loaisp: $("#maloai").val() },
+                success: function (rs) {
+                    $("#chksanpham").children().remove();
+                    $.each($.parseJSON(rs), function (i, item) {
+                        console.log(item);
+                       
+                        $("#chksanpham").append("<input type='checkbox' class='form-check-box checkmasp' value=" + item.masp +  ">" + " " + "<label class='form-checkbox-label'>" + item.tensp + "</label>");
+                    })
+                }
+            })
+              
+        })
+        $("#themspkm").click(function () {
+            var masp = new Array();
+            if ($("#madotkm").val() == "0") {
+                alert("Vi lòng chọn đợt khuyến mãi")
+            }
+            $(".checkmasp:checked").each(function (i) {
+                masp[i] = $(this).val();
+            })
+            console.log(masp);
+            $.ajax({
+                url: "/quantri/quantri/themspkm",
+                type: "GET",
+                data: { makm: $("#madotkm").val(), sp: masp.toString(), tile: $("#tilegiam").val() },
+               success: function (rs) {
+                   alert(rs);
+                   if (rs == "Thêm thành công") { location.reload() };
+
+                }
+            })
+        })
+    </script>
+    <!----edit-modal end--------->
+    <!----edit-modal start--------->
+    <div class="modal fade" tabindex="-1" id="editEmployeeModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Chỉnh sửa</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Mã</label>
+                        <input type="text" id="makmsua" readonly class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tên</label>
+                        <input type="text" id="tenkmsua" name="ten" readonly class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Tỉ lệ</label>
+                        <input type="number" id="tilekmsua" name="ten" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" id="btnLuukm2" class="btn btn-success">Lưu</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+
+        var editloai = function (ma, ten, bd) {
+
+            $("#editEmployeeModal").modal('show');
+            $("#makmsua").val(ma);
+            $("#tenkmsua").val(ten);
+            $("#tilekmsua").val(bd);
+            
+
+        }
+
+        $("#btnLuukm2").click(function () {
+            $.ajax({
+                url: "/quantri/quantri/suaspkm",
+                type: "GET",
+                data: {
+                    makm: $("#makmsua").val(), masp: $("#tenkmsua").val(), tile: $("#tilekmsua").val()
+
+                },
+                success: function (rs) {
+                    alert(rs);
+                    if (rs == "Lưu thành công") { location.reload() };
+                }
+            })
+        })
+
+    </script>
+    <!----edit-modal end--------->
+    <!----delete-modal start--------->
+    <div class="modal fade" tabindex="-1" id="deleteEmployeeModal" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Xóa </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn chắc muốn xóa <span id="maloaixoa" class="text-danger"></span>   này?</p>
+                    <p class="text-warning"><small>xóa rồi không thể khôi phục,</small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                    <button type="button" id="btnxoakm" class="btn btn-success">Xóa</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    var deleteloai = function (ma, ten) {
+        $("#deleteEmployeeModal").modal('show');
+        $("#maloaixoa").text(ten + " ra khỏi đợt" + ma);
+        $("#btnxoakm").click(function () {
+            $.ajax({
+                url: "/quantri/quantri/xoaspkm",
+                type: "GET",
+                data: {
+                    makm: ma, masp:ten
+
+                },
+                success: function (rs) {
+                    alert(rs);
+                    if (rs == "Xóa thành công") { location.reload() };
+                }
+            })
+        })
+    }
+
+</script>
